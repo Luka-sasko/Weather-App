@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val client = OkHttpClient()
-
+        var city="Osijek"
         val request = Request.Builder()
-            .url("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Osijek&days=3")
+            .url("https://weatherapi-com.p.rapidapi.com/forecast.json?q={$city}&days=3")
             .get()
             .addHeader("X-RapidAPI-Key", "f9a73f3270mshf93ddb506a6e480p1b9446jsnd1d4bfc14a1a")
             .addHeader("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
@@ -67,9 +67,21 @@ class MainActivity : AppCompatActivity() {
                     val responseBody = response.body?.string()
                     val weatherData = parseJsonToWeatherData(responseBody.toString().trimIndent())
                     val adapterWeather=WeatherAdapter(weatherData!!)
-                    weatherData.forecast.forecastday[0].day.daily_chance_of_rain
+                    weatherData.location.name
 
                     Log.i("weatherData",weatherData!!.current.condition.toString())
+
+                    val loc=findViewById<TextView>(R.id.TVcurrentName)
+                    val region=findViewById<TextView>(R.id.tvRegion)
+                    val currentTemp=findViewById<TextView>(R.id.TvCurrentTemp)
+                    val feelTemp=findViewById<TextView>(R.id.tvFeelTemp)
+                    val currentUv=findViewById<TextView>(R.id.tvCurrentUV)
+                    val currentPresure=findViewById<TextView>(R.id.tvCurrentPressure)
+                    val windSpeed=findViewById<TextView>(R.id.tvWindKph)
+                    val winDir=findViewById<TextView>(R.id.tvWindDir)
+                    val lastUpdated=findViewById<TextView>(R.id.TvLastUpdated)
+                    val sunSet=findViewById<TextView>(R.id.tvSunset)
+                    val sunRise=findViewById<TextView>(R.id.tvSunrise)
 
                     val day1ChanceOfRain=findViewById<TextView>(R.id.day1TVChanceOfRain)
                     val day2ChanceOfRain=findViewById<TextView>(R.id.day2TVChanceOfRain)
@@ -93,6 +105,12 @@ class MainActivity : AppCompatActivity() {
                     var DaysMaxTemps:MutableList<String> = mutableListOf()
                     var DaysMinTemps:MutableList<String> = mutableListOf()
                     var DaysChanceOfRain:MutableList<String> = mutableListOf()
+                    var currentData:MutableList<String> = mutableListOf()
+                    var CurrentLocCountry:MutableList<String> = mutableListOf()
+                    var CurrentWind:MutableList<String> = mutableListOf()
+                    var CurrentPressureUvFeelTempLastUpdate:MutableList<String> = mutableListOf()
+
+
 
 
                     DaysConditions=adapterWeather.GetConditionText()
@@ -101,6 +119,24 @@ class MainActivity : AppCompatActivity() {
                     DaysMaxTemps=adapterWeather.GetMaxTemps()
                     DaysMinTemps=adapterWeather.GetMinTemps()
                     DaysChanceOfRain=adapterWeather.GetChanceOfRain()
+                    //currentData {Loc,Region,currentTemp,feelTemp,currentUV,currentPresure,windSpeed,windDir,LastUpdated}
+                    currentData=adapterWeather.GetCurrentData()
+
+
+                    //Postavljanje trenutnih vrijednosti
+                    runOnUiThread {
+                        loc.text = currentData[0]
+                        region.text = currentData[1]
+                        currentTemp.text = currentData[2]
+                        feelTemp.text = currentData[3]
+                        currentUv.text = currentData[4]
+                        currentPresure.text = currentData[5]
+                        windSpeed.text = currentData[6]
+                        winDir.text = currentData[7]
+                        lastUpdated.text = currentData[8]
+                        sunRise.text=currentData[9]
+                        sunSet.text=currentData[10]
+                    }
 
                     //Postavljanje ChanceOfRain na svaki dan
                     runOnUiThread {
@@ -159,4 +195,5 @@ class MainActivity : AppCompatActivity() {
         val dayAbbreviationFormat = SimpleDateFormat("E", Locale("en"))
         return dayAbbreviationFormat.format(date)
     }
+
 }
