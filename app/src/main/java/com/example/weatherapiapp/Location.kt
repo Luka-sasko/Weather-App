@@ -1,5 +1,15 @@
 package com.example.weatherapiapp
 
+
+data class HourlyWeather(
+    val time: String,
+    val temperature: String,
+    val image:String,
+    val pressure:String,
+    val wind:String
+)
+
+
 data class Location(
     val name: String,
     val region: String,

@@ -1,7 +1,9 @@
 package com.example.weatherapiapp
 
+import okhttp3.internal.trimSubstring
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.Calendar
 
 class WeatherAdapter(val weatherData: WeatherData) {
 
@@ -63,6 +65,32 @@ class WeatherAdapter(val weatherData: WeatherData) {
         list.add(weatherData.forecast.forecastday[0].astro.sunset)
 
         return list
+    }
+    fun getCurrentHour(): Int {
+        val calendar = Calendar.getInstance()
+        return calendar.get(Calendar.HOUR_OF_DAY)
+    }
+    fun generateWeatherHourly():ArrayList<HourlyWeather>{
+        val currentHour=getCurrentHour()
+        var hourly: ArrayList<HourlyWeather> = ArrayList()
+
+        for (i in currentHour .. 23){
+        hourly.add(HourlyWeather(
+                        weatherData.forecast.forecastday[0].hour[i].time.trimSubstring(10,16),
+            weatherData.forecast.forecastday[0].hour[i].temp_c.toString()+" °C",
+            "https:${weatherData.forecast.forecastday[0].hour[i].condition.icon}",
+            weatherData.forecast.forecastday[0].hour[i].pressure_mb.toInt().toString()+" Pa",
+            weatherData.forecast.forecastday[0].hour[i].wind_kph.toString()+" km/h"
+            ))}
+        for (i in 0 .. currentHour){
+            hourly.add(HourlyWeather(
+                weatherData.forecast.forecastday[1].hour[i].time.trimSubstring(10,16),
+                weatherData.forecast.forecastday[1].hour[i].temp_c.toString()+" °C",
+                "https:${weatherData.forecast.forecastday[1].hour[i].condition.icon}",
+                weatherData.forecast.forecastday[1].hour[i].pressure_mb.toInt().toString()+" Pa",
+                weatherData.forecast.forecastday[1].hour[i].wind_kph.toString()+" km/h"
+            ))}
+        return hourly
     }
 
 }
