@@ -5,6 +5,7 @@ import okhttp3.Request
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -166,10 +167,13 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager = layoutManager
         recyclerView2.adapter=dailyAdapter
+        val tv=findViewById<TextView>(R.id.textView2)
         dailyAdapter.onItemClick = {
             val itemClicked = it.index
-            val dayIndWeather= adapterWeather.GenerateDayData(it.index)
-            Toast.makeText(this,"Generated forecast for :${it.day}",Toast.LENGTH_SHORT).show()
+            tv.visibility= View.VISIBLE
+            tv.text="Forecast for day: ${it.day}"
+            val dayIndWeather= adapterWeather.GenerateDayData(itemClicked)
+            Toast.makeText(this,"Generated forecast for day:\n${it.day}",Toast.LENGTH_SHORT).show()
             SetRecyclerViewDayInd(dayIndWeather)
         }
     }
