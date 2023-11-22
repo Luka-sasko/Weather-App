@@ -9,6 +9,15 @@ data class HourlyWeather(
     val wind:String
 )
 
+data class DailyWeather(
+    val day:String,
+    val icon:String,
+    val condition:String,
+    val temp:String,
+    val chance_of_rain: String,
+    val index:Int
+)
+
 
 data class Location(
     val name: String,

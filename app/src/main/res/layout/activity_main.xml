@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:id="@+id/linearLayout0"
         android:layout_width="match_parent"
@@ -27,12 +26,12 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
+            app:cardCornerRadius="8dp"
             android:elevation="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <EditText
                     android:id="@+id/TVcurrentName"
                     android:layout_width="wrap_content"
@@ -133,6 +132,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="80px"
                     android:layout_height="80px"
+                    android:backgroundTint="@android:color/transparent"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -143,6 +143,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="80px"
                     android:layout_height="80px"
+                    android:backgroundTint="@android:color/transparent"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="4dp"
                     app:layout_constraintEnd_toStartOf="@+id/tvSunset"
@@ -172,8 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:background="@color/white"
-                    android:tint="#000000"
+                    android:backgroundTint="@android:color/transparent"
                     app:layout_constraintBottom_toBottomOf="@+id/TVcurrentName"
                     app:layout_constraintStart_toEndOf="@+id/TVcurrentName"
                     app:layout_constraintTop_toTopOf="@+id/TVcurrentName"
@@ -230,259 +230,27 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout0"
         tools:ignore="MissingConstraints">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/day1"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/daysRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            app:cardElevation="5dp">
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/day1TVChanceOfRain"
-                    android:layout_width="35dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text=""
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day1TVTemp"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day1TVTemp"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day1Condition"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day1TvDay"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/Day1ImageView"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/Day1ImageView"
-                    android:layout_width="80px"
-                    android:layout_height="80px"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/RainLogo1"
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/water_droplet_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day1TVChanceOfRain"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day1Condition"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day1TvDay"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/day2"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/DayIndRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            app:cardElevation="5dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/day2TVChanceOfRain"
-                    android:layout_width="35dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day2TVTemp"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day2TVTemp"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day2Condition"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day2TvDay"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/Day2ImageView"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/Day2ImageView"
-                    android:layout_width="80px"
-                    android:layout_height="80px"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/RainLogo2"
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/water_droplet_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day2TVChanceOfRain"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day2Condition"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day2TvDay"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/day3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
-            app:cardElevation="5dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <TextView
-                    android:id="@+id/day3TVChanceOfRain"
-                    android:layout_width="35dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day3TVTemp"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day3TVTemp"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day3Condition"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day3TvDay"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textAlignment="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/Day3ImageView"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/Day3ImageView"
-                    android:layout_width="80px"
-                    android:layout_height="80px"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/ic_launcher_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/RainLogo3"
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:src="@drawable/water_droplet_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day3TVChanceOfRain"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/day3Condition"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/day3TvDay"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/hourly_weathercast">
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
